@@ -1,0 +1,55 @@
+# Bot + Celery worker + beat with RabbitMQ (broker) and Redis (results, FSM, locks).
+# Usage: cp .env.example .env && edit; docker compose up -d --build
+x-app: &app
+  build: .
+  env_file: .env
+  environment:
+    REDIS_URL: redis://redis:6379/0
+    AMQP_URL: amqp://guest:guest@rabbitmq:5672//
+    MIFIT_DATA_DIR: /app/data
+    DB_PATH: /app/data/state/bot.sqlite
+  volumes:
+    - ./data:/app/data
+  user: "${UID:-1000}:${GID:-1000}"
+  restart: unless-stopped
+  depends_on:
+    redis:
+      condition: service_healthy
+    rabbitmq:
+      condition: service_healthy
+
+services:
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes: [redis-data:/data]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      retries: 10
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3.13-alpine
+    volumes: [rabbitmq-data:/var/lib/rabbitmq]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      retries: 12
+    restart: unless-stopped
+
+  bot:
+    <<: *app
+    command: ["python", "-m", "bot"]
+
+  worker:
+    <<: *app
+    command: ["celery", "-A", "worker.celery_app", "worker", "--loglevel=INFO", "--concurrency=2"]
+
+  beat:
+    <<: *app
+    command: ["celery", "-A", "worker.celery_app", "beat", "--loglevel=INFO", "--schedule=/tmp/celerybeat-schedule"]
+
+volumes:
+  redis-data:
+  rabbitmq-data:

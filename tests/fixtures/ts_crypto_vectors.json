@@ -1,0 +1,33 @@
+{
+  "ssecurity": "BwcHBwcHBwcHBwcHBwcHBw==",
+  "params": {
+    "relative_uid": 123456789,
+    "key": "heart_rate",
+    "start_time": 1760000000,
+    "end_time": 1760086400,
+    "limit": 1440,
+    "items": [
+      {
+        "timestamp": 1760000000,
+        "suffix": "abc_DEF-123"
+      }
+    ],
+    "name": "тест"
+  },
+  "encrypted": {
+    "data": "Wk2+nibIyfDPue3RIReI3KsSJ3aqpvYr7L571UdpWJ4gaKn+q159HnPPFiCDEqroLvYlcKtypHeM+q2k8U8eME8yzIhn27IDVBKI0jtvE11PzV5QScS8sLxlB8utbjoIy8nhq9JKIBX0KAOtkrxmThRqu2PCnwpqCUJQWlJVWpXo0sTutCFxba1KJ+YKaW13b/s5SFEu7zo2lLsP7kOFFfyvEzgm0Au7xd5Go/lldjOxW/FL",
+    "rc4_hash__": "rOwnS5jG8tuA++XxvSltT9viwRu/3fca643YqQ==",
+    "signature": "hcH1A9J1v9jNUv5QsAMcDAqUlVI=",
+    "_nonce": "q6urq6urq6sBv5dV"
+  },
+  "snonce": "DqMyzoWTIGcIY/vJS/aqUcVbUSBScunbs1iWw0jESwc=",
+  "response_body": "Wk2vlC7Mn6OJ8JDWLQDfiu4CLjm99KBntM0111FkWJ5Ze+70vFMAVjDTFmPdRIbuLvA0DfM5vXvDpb6p9lMMdh5uid1pw/UWbG+eyztWE11IyxVCBKH3+Q==",
+  "rc4_hex": "16a82cc4e5a3774711558f9da96b",
+  "fds": {
+    "obj_key": "AwMDAwMDAwMDAwMDAwMDAw==",
+    "cipher_b64": "IeevQfUtAaFboZ2b9To5VOeblQfRLY70ky1ZnGm3nTZURfWyWOKwOwQPJoxiN8pZ",
+    "plain": "hello FDS payload, 32+ bytes long........"
+  },
+  "key6": "0078e7680c20",
+  "suffix": "AHjnaAwg_98O8HYCOBHMq32eZZczDTKeuNEE"
+}

@@ -1,0 +1,907 @@
+{
+ "$defs": {
+  "Activity": {
+   "additionalProperties": true,
+   "properties": {
+    "steps": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Steps"
+    },
+    "steps_vs_28d_pct": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Steps Vs 28D Pct"
+    },
+    "hr_zones_min": {
+     "anyOf": [
+      {
+       "additionalProperties": {
+        "type": "integer"
+       },
+       "type": "object"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Hr Zones Min"
+    }
+   },
+   "title": "Activity",
+   "type": "object"
+  },
+  "Anomaly": {
+   "additionalProperties": true,
+   "properties": {
+    "type": {
+     "title": "Type",
+     "type": "string"
+    }
+   },
+   "required": [
+    "type"
+   ],
+   "title": "Anomaly",
+   "type": "object"
+  },
+  "Correlation": {
+   "additionalProperties": false,
+   "properties": {
+    "x": {
+     "title": "X",
+     "type": "string"
+    },
+    "y": {
+     "title": "Y",
+     "type": "string"
+    },
+    "lag": {
+     "title": "Lag",
+     "type": "integer"
+    },
+    "rho": {
+     "title": "Rho",
+     "type": "number"
+    },
+    "n": {
+     "title": "N",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "x",
+    "y",
+    "lag",
+    "rho",
+    "n"
+   ],
+   "title": "Correlation",
+   "type": "object"
+  },
+  "DataQuality": {
+   "additionalProperties": false,
+   "properties": {
+    "hr_coverage_pct": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Hr Coverage Pct"
+    },
+    "streams_missing": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Streams Missing",
+     "type": "array"
+    },
+    "baseline_days": {
+     "default": 0,
+     "title": "Baseline Days",
+     "type": "integer"
+    },
+    "baseline_status": {
+     "default": "warming_up",
+     "enum": [
+      "ready",
+      "warming_up"
+     ],
+     "title": "Baseline Status",
+     "type": "string"
+    }
+   },
+   "title": "DataQuality",
+   "type": "object"
+  },
+  "Heart": {
+   "additionalProperties": false,
+   "properties": {
+    "rhr_device": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Rhr Device"
+    },
+    "sleep_rhr": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Sleep Rhr"
+    },
+    "awake_avg": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Awake Avg"
+    },
+    "max": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Max"
+    },
+    "abnormal_count": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Abnormal Count"
+    },
+    "z": {
+     "additionalProperties": {
+      "type": "number"
+     },
+     "title": "Z",
+     "type": "object"
+    },
+    "trends": {
+     "additionalProperties": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "type": "object"
+     },
+     "title": "Trends",
+     "type": "object"
+    }
+   },
+   "title": "Heart",
+   "type": "object"
+  },
+  "Night": {
+   "additionalProperties": false,
+   "properties": {
+    "bed": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Bed"
+    },
+    "wake": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Wake"
+    },
+    "tst": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "total sleep time, min",
+     "title": "Tst"
+    },
+    "tib": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "time in bed, min",
+     "title": "Tib"
+    },
+    "eff": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Eff"
+    },
+    "latency": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Latency"
+    },
+    "phases": {
+     "additionalProperties": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "type": "array"
+     },
+     "description": "phase: [min, % of tst]",
+     "title": "Phases",
+     "type": "object"
+    },
+    "waso": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Waso"
+    },
+    "awakenings": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Awakenings"
+    },
+    "hr": {
+     "$ref": "#/$defs/SleepHR"
+    },
+    "breath": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Breath"
+    },
+    "score_device": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Score Device"
+    },
+    "quality_index": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "own 0-100 heuristic, see subscores",
+     "title": "Quality Index"
+    },
+    "subscores": {
+     "additionalProperties": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "title": "Subscores",
+     "type": "object"
+    },
+    "z": {
+     "additionalProperties": {
+      "type": "number"
+     },
+     "description": "robust z vs personal baseline",
+     "title": "Z",
+     "type": "object"
+    }
+   },
+   "title": "Night",
+   "type": "object"
+  },
+  "Recovery": {
+   "additionalProperties": false,
+   "properties": {
+    "index": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Index"
+    },
+    "method": {
+     "enum": [
+      "baseline_z",
+      "absolute"
+     ],
+     "title": "Method",
+     "type": "string"
+    },
+    "drivers": {
+     "items": {
+      "type": "string"
+     },
+     "title": "Drivers",
+     "type": "array"
+    }
+   },
+   "required": [
+    "method"
+   ],
+   "title": "Recovery",
+   "type": "object"
+  },
+  "Sleep": {
+   "additionalProperties": false,
+   "properties": {
+    "need": {
+     "title": "Need",
+     "type": "integer"
+    },
+    "last_night": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/Night"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "week": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/SleepPeriod"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    },
+    "month": {
+     "anyOf": [
+      {
+       "$ref": "#/$defs/SleepPeriod"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null
+    }
+   },
+   "required": [
+    "need"
+   ],
+   "title": "Sleep",
+   "type": "object"
+  },
+  "SleepHR": {
+   "additionalProperties": false,
+   "properties": {
+    "min": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Min"
+    },
+    "avg": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Avg"
+    },
+    "rhr": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "lowest 30-min rolling mean during sleep",
+     "title": "Rhr"
+    },
+    "dip": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "avg HR first half minus second half of the night",
+     "title": "Dip"
+    }
+   },
+   "title": "SleepHR",
+   "type": "object"
+  },
+  "SleepPeriod": {
+   "additionalProperties": false,
+   "properties": {
+    "nights": {
+     "title": "Nights",
+     "type": "integer"
+    },
+    "tst_avg": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Tst Avg"
+    },
+    "debt": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "sum(tst - need) over the period, min; negative = deficit",
+     "title": "Debt"
+    },
+    "bed_avg": {
+     "anyOf": [
+      {
+       "type": "string"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Bed Avg"
+    },
+    "bed_sd": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Bed Sd"
+    },
+    "midpoint_sd": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Midpoint Sd"
+    },
+    "social_jetlag": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Social Jetlag"
+    },
+    "deep_pct_avg": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Deep Pct Avg"
+    },
+    "rem_pct_avg": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Rem Pct Avg"
+    },
+    "quality_avg": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Quality Avg"
+    },
+    "naps": {
+     "default": 0,
+     "title": "Naps",
+     "type": "integer"
+    }
+   },
+   "required": [
+    "nights"
+   ],
+   "title": "SleepPeriod",
+   "type": "object"
+  },
+  "SpO2": {
+   "additionalProperties": false,
+   "properties": {
+    "status": {
+     "enum": [
+      "ok",
+      "no_data"
+     ],
+     "title": "Status",
+     "type": "string"
+    },
+    "avg": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Avg"
+    },
+    "min": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Min"
+    },
+    "events": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Events"
+    },
+    "odi": {
+     "anyOf": [
+      {
+       "type": "number"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "description": "desaturation events per hour of sleep",
+     "title": "Odi"
+    },
+    "low90_min": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Low90 Min"
+    }
+   },
+   "required": [
+    "status"
+   ],
+   "title": "SpO2",
+   "type": "object"
+  },
+  "Stress": {
+   "additionalProperties": false,
+   "properties": {
+    "avg": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Avg"
+    },
+    "max": {
+     "anyOf": [
+      {
+       "type": "integer"
+      },
+      {
+       "type": "null"
+      }
+     ],
+     "default": null,
+     "title": "Max"
+    },
+    "high_episodes": {
+     "default": 0,
+     "title": "High Episodes",
+     "type": "integer"
+    },
+    "high_min": {
+     "default": 0,
+     "title": "High Min",
+     "type": "integer"
+    },
+    "trend": {
+     "additionalProperties": {
+      "type": "number"
+     },
+     "title": "Trend",
+     "type": "object"
+    }
+   },
+   "title": "Stress",
+   "type": "object"
+  },
+  "Units": {
+   "additionalProperties": false,
+   "properties": {
+    "hr": {
+     "default": "bpm",
+     "title": "Hr",
+     "type": "string"
+    },
+    "dur": {
+     "default": "min",
+     "title": "Dur",
+     "type": "string"
+    },
+    "pct": {
+     "default": "%",
+     "title": "Pct",
+     "type": "string"
+    },
+    "clock": {
+     "default": "HH:MM local",
+     "title": "Clock",
+     "type": "string"
+    }
+   },
+   "title": "Units",
+   "type": "object"
+  }
+ },
+ "additionalProperties": false,
+ "properties": {
+  "schema_version": {
+   "default": 1,
+   "title": "Schema Version",
+   "type": "integer"
+  },
+  "date": {
+   "title": "Date",
+   "type": "string"
+  },
+  "day_complete": {
+   "title": "Day Complete",
+   "type": "boolean"
+  },
+  "tz": {
+   "title": "Tz",
+   "type": "string"
+  },
+  "units": {
+   "$ref": "#/$defs/Units"
+  },
+  "data_quality": {
+   "$ref": "#/$defs/DataQuality"
+  },
+  "sleep": {
+   "$ref": "#/$defs/Sleep"
+  },
+  "heart": {
+   "$ref": "#/$defs/Heart"
+  },
+  "anomalies": {
+   "items": {
+    "$ref": "#/$defs/Anomaly"
+   },
+   "title": "Anomalies",
+   "type": "array"
+  },
+  "anomalies_total": {
+   "default": 0,
+   "title": "Anomalies Total",
+   "type": "integer"
+  },
+  "spo2": {
+   "$ref": "#/$defs/SpO2"
+  },
+  "stress": {
+   "$ref": "#/$defs/Stress"
+  },
+  "activity": {
+   "$ref": "#/$defs/Activity"
+  },
+  "recovery": {
+   "$ref": "#/$defs/Recovery"
+  },
+  "correlations": {
+   "items": {
+    "$ref": "#/$defs/Correlation"
+   },
+   "title": "Correlations",
+   "type": "array"
+  }
+ },
+ "required": [
+  "date",
+  "day_complete",
+  "tz",
+  "data_quality",
+  "sleep",
+  "heart",
+  "spo2",
+  "stress",
+  "activity",
+  "recovery"
+ ],
+ "title": "Report",
+ "type": "object"
+}

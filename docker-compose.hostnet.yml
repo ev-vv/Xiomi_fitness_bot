@@ -1,0 +1,16 @@
+# Optional override for hosts where Docker cannot create a bridge network
+# ("all predefined address pools have been fully subnetted", e.g. a VPN owns 10.0.0.0/8):
+#   docker compose -f docker-compose.yml -f docker-compose.hostnet.yml up -d --build
+# All services share the host network; Redis (6379) and RabbitMQ (5672) listen on the host.
+x-local: &local
+  network_mode: host
+  environment:
+    REDIS_URL: redis://localhost:6379/0
+    AMQP_URL: amqp://guest:guest@localhost:5672//
+
+services:
+  redis: {network_mode: host}
+  rabbitmq: {network_mode: host}
+  bot: *local
+  worker: *local
+  beat: *local

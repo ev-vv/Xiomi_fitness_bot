@@ -1,0 +1,103 @@
+{
+ "v2": {
+  "hex": "0078e7680c0208ffe001d002e7681874e768555ca861000048710000e8fee668f479e7683c000500d002e76837003dff462c010300d002e76861655f",
+  "expected": {
+   "report": {
+    "sleepFinish": true,
+    "deviceBedTime": 1759970000,
+    "deviceWakeupTime": 1759999000,
+    "sleepQuality": 85,
+    "sleepEfficiency": 92,
+    "entrySleepDuration": 25000,
+    "linBedDuration": 29000,
+    "goBedTime": 1759969000,
+    "leaveBedTime": 1760000500
+   },
+   "records": {
+    "heart_rate": [
+     [
+      1759970000,
+      55
+     ],
+     [
+      1759970120,
+      61
+     ],
+     [
+      1759970240,
+      70
+     ]
+    ],
+    "spo2": [
+     [
+      1759970000,
+      97
+     ],
+     [
+      1759970600,
+      95
+     ]
+    ]
+   }
+  }
+ },
+ "v1": {
+  "hex": "0078e7680c0108ffe001d002e7681874e768555ca861000048710000e8fee668f479e7683c00020032333c00010063",
+  "expected": {
+   "report": {
+    "sleepFinish": true,
+    "deviceBedTime": 1759970000,
+    "deviceWakeupTime": 1759999000,
+    "sleepQuality": 85,
+    "sleepEfficiency": 92,
+    "entrySleepDuration": 25000,
+    "linBedDuration": 29000,
+    "goBedTime": 1759969000,
+    "leaveBedTime": 1760000500
+   },
+   "records": {
+    "heart_rate": [
+     [
+      0,
+      50
+     ],
+     [
+      60,
+      51
+     ]
+    ],
+    "spo2": [
+     [
+      0,
+      99
+     ]
+    ]
+   }
+  }
+ },
+ "no_spo2": {
+  "hex": "0078e7680c0208ff8001d002e7681874e768555ca861000048710000e8fee668f479e7683c000100d002e768373c000100d002e76860",
+  "expected": {
+   "report": {
+    "sleepFinish": true,
+    "deviceBedTime": 1759970000,
+    "deviceWakeupTime": 1759999000,
+    "sleepQuality": 85,
+    "sleepEfficiency": 92,
+    "entrySleepDuration": 25000,
+    "linBedDuration": 29000,
+    "goBedTime": 1759969000,
+    "leaveBedTime": 1760000500
+   },
+   "records": {
+    "heart_rate": [
+     [
+      1759970000,
+      55
+     ]
+    ],
+    "spo2": []
+   }
+  }
+ }
+}
